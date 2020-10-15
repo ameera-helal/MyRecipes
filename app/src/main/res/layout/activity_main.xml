@@ -13,6 +13,7 @@
         android:gravity="center">
 
         <SearchView
+            android:id="@+id/main_activity_searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

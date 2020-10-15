@@ -1,9 +1,12 @@
 package com.example.myrecipes.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,17 +17,20 @@ import com.example.myrecipes.R;
 import com.example.myrecipes.model.Recipe;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private List<Recipe> recipeList;
+    private List<Recipe> recipesFiltered;
 
 
     public RecyclerViewAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipeList = recipeList;
+        this.recipesFiltered = recipeList;
     }
 
     @NonNull
@@ -50,6 +56,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return recipeList.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView recipeName;
         public TextView recipeCalories;
@@ -67,7 +75,55 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String query = charSequence.toString();
+
+                Log.d("FILTER", "SEARCH MSG "+query);
+
+                List<Recipe> filtered = new ArrayList<>();
+
+                if (query.isEmpty()) {
+                    filtered.addAll(recipeList);
+                    Log.d("FILTER", "emptyy "+recipeList);
+
+                } else {
+                    for (Recipe recipe : recipeList) {
+                        if (recipe.getName().toLowerCase().contains(query.toLowerCase())) {
+                            filtered.add(recipe);
+                            Log.d("FILTER", "RESULT ADDED "+recipe);
+
+                        }
+                    }
+                }
+
+                FilterResults results = new FilterResults();
+                results.count = filtered.size();
+                results.values = filtered;
+                Log.d("FILTER", "performFiltering: "+filtered);
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults results) {
+
+
+                recipesFiltered.clear();
+                recipesFiltered.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
 }
+
+
 
 
 

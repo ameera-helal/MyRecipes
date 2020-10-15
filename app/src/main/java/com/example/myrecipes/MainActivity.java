@@ -1,11 +1,14 @@
 package com.example.myrecipes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myrecipes.Network.ApiRequest;
@@ -19,12 +22,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private ApiRequest apiRequest;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private SearchView searchView;
+    private CheckBox isSortByFats, isSortByCalory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView= findViewById(R.id.main_activity_recyclerView);
+        searchView= findViewById(R.id.main_activity_searchView);
+        isSortByCalory=findViewById(R.id.main_activity_sortByCalories);
+        isSortByFats=findViewById(R.id.main_activity_sortByFats);
 
 
 
@@ -58,7 +66,29 @@ public class MainActivity extends AppCompatActivity {
                recyclerView.setHasFixedSize(true);
                linearLayoutManager = new LinearLayoutManager(MainActivity.this);
                recyclerView.setLayoutManager(linearLayoutManager);
+               recyclerView.setItemAnimator(new DefaultItemAnimator());
                recyclerView.setAdapter(recyclerViewAdapter);
+               recyclerViewAdapter.notifyDataSetChanged();
+
+               searchView.setActivated(true);
+               searchView.setQueryHint("Search by the Recipe Name");
+               searchView.onActionViewExpanded();
+               searchView.setIconified(false);
+               searchView.clearFocus();
+
+               searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                   @Override
+                   public boolean onQueryTextSubmit(String query) {
+                       return false;
+                   }
+
+                   @Override
+                   public boolean onQueryTextChange(String newText) {
+                       recyclerViewAdapter.getFilter().filter(newText);
+                       Log.d("SEARCH", "onQueryTextChange: "+newText);
+                       return false;
+                   }
+               });
 
 
                for (int index =0 ; index< recipesList.size();index++)

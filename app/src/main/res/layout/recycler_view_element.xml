@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/recycler_view_recipeThumb"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentStart="true"
+                android:src="@android:drawable/ic_menu_report_image"/>
+
+            <TextView
+                android:id="@+id/recycler_view_recipeName"
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/recycler_view_recipeThumb"
+                android:text="RecipeName" />
+
+            <TextView
+                android:id="@+id/Calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories:"
+                android:layout_toRightOf="@id/recycler_view_recipeThumb"
+                android:layout_below="@id/recycler_view_recipeName"
+                style="@style/sub_title"/>
+
+            <TextView
+                android:id="@+id/Fats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fats:"
+                android:layout_toRightOf="@id/recycler_view_recipeThumb"
+                android:layout_below="@id/Calories"
+                style="@style/sub_title"/>
+
+            <TextView
+                android:id="@+id/recycler_view_recipeCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RecipeCalories:"
+                android:layout_toRightOf="@id/Calories"
+                android:layout_alignBaseline="@id/Calories"
+                android:layout_below="@id/recycler_view_recipeName"
+                style="@style/body"/>
+
+            <TextView
+                android:id="@+id/recycler_view_recipeFats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RecipeFats:"
+                android:layout_toRightOf="@id/Fats"
+                android:layout_below="@id/Calories"
+                android:layout_alignBaseline="@id/Fats"
+                style="@style/body"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

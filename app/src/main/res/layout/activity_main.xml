@@ -42,7 +42,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="calories"
-                    android:layout_below="@id/sort"
                     style="@style/body"/>
 
                 <CheckBox
@@ -50,7 +49,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@id/sort"
                     android:text="Fats"
                     style="@style/body"/>
 

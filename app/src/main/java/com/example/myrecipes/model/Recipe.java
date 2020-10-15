@@ -42,6 +42,25 @@ public class Recipe {
     @Expose
     private String time;
 
+
+    public Recipe(String calories, String carbos, String description, int difficulty, String fats, String headline, String id, String image, String name, String proteins, String thumb, String time) {
+        this.calories = calories;
+        this.carbos = carbos;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.fats = fats;
+        this.headline = headline;
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.proteins = proteins;
+        this.thumb = thumb;
+        this.time = time;
+    }
+
+    public Recipe() {
+    }
+
     public String getCalories() {
         return calories;
     }

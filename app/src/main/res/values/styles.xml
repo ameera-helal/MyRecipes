@@ -14,4 +14,26 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <!-- TextView title-->
+    <style name="title" parent="android:Widget.TextView">
+        <item name="android:layout_margin">2.5dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">cursive</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+    <!-- TextView sub-title-->
+    <style name="sub_title" parent="title">
+       <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- TextView body-->
+    <style name="body" parent="title">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

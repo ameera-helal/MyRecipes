@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:fillViewport="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/expand_backButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/back_foreground"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+        </Button>
+
+        <ImageView
+            android:id="@+id/expand_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/expand_backButton"
+            android:src="@android:drawable/ic_menu_report_image"
+            android:scaleType="fitCenter"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/expand_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/expand_item_image"
+            android:text="Enter Item"
+            android:layout_centerHorizontal="true"
+            style="@style/title">
+        </TextView>
+
+        <TextView
+            android:id="@+id/expand_item_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/expand_item_name"
+            android:text="Heasline"
+            android:layout_centerHorizontal="true"
+            style="@style/sub_title">
+        </TextView>
+
+        <TextView
+            android:id="@+id/expand_item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/expand_item_headline"
+            android:text="description"
+            android:layout_centerHorizontal="true"
+            style="@style/body">
+        </TextView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card"
+            android:padding="10dp"
+            android:layout_below="@id/expand_item_description">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/expand_item_facts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="~ Nutrition Facts ~"
+                    android:layout_centerHorizontal="true"
+                    style="@style/sub_title">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_title_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/expand_item_facts"
+                    android:layout_alignParentStart="true"
+                    android:text="Calories:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_title_fats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/expand_title_calories"
+                    android:text="Fats:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_title_carbos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/expand_item_carbos"
+                    android:layout_below="@id/expand_item_facts"
+                    android:text="Carbos:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_title_protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/expand_item_protein"
+                    android:layout_below="@id/expand_title_calories"
+                    android:text="Protein:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_item_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/expand_item_facts"
+                    android:layout_toEndOf="@id/expand_title_calories"
+                    android:text="Calories:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_item_fats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/expand_title_fats"
+                    android:layout_below="@id/expand_title_calories"
+                    android:text="Fats:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_item_carbos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/expand_item_facts"
+                    android:text="Carbos:"
+                    style="@style/body">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expand_item_protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/expand_title_calories"
+                    android:text="Protein:"
+                    style="@style/body">
+                </TextView>
+
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
+</LinearLayout>

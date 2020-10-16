@@ -1,10 +1,14 @@
 package com.example.myrecipes.adapter;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -15,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrecipes.R;
 import com.example.myrecipes.model.Recipe;
+import com.example.myrecipes.ui.Recipe_Details;
+import com.example.myrecipes.util.AppUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -72,6 +78,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             recipeFats = itemView.findViewById(R.id.recycler_view_recipeFats);
             recipeThumb = itemView.findViewById(R.id.recycler_view_recipeThumb);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    /*Intent intent = new Intent(context, Recipe_Details.class);
+                    intent.putExtra(AppUtil.CURRENT_RECIPE,getAdapterPosition());
+                    context.startActivity(intent);*/
+
+                    createExpandedPopup(getAdapterPosition());
+                }
+            });
         }
 
     }
@@ -121,6 +137,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
+    public void createExpandedPopup(int position) {
+
+        final Recipe recipe = this.recipeList.get(position);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.popup_dialog_expand,null);
+        AlertDialog dialog;
+        builder.setView(view);
+
+        dialog = builder.create();
+
+        ImageView expandImage = view.findViewById(R.id.expand_item_image);
+        TextView expandName=view.findViewById(R.id.expand_item_name);
+        TextView expandHeadline=view.findViewById(R.id.expand_item_headline);
+        TextView expandDescription=view.findViewById(R.id.expand_item_description);
+        TextView expandCalories =view.findViewById(R.id.expand_item_calories);
+        TextView expandFats =view.findViewById(R.id.expand_item_fats);
+        TextView expandCarbos= view.findViewById(R.id.expand_item_carbos);
+        TextView expandProtein=view.findViewById(R.id.expand_item_protein);
+
+        Button expandBackButton=view.findViewById(R.id.expand_backButton);
+
+        Picasso.get().load(recipe.getImage()).into(expandImage);
+        expandName.setText(recipe.getName());
+        expandHeadline.setText(recipe.getHeadline());
+        expandDescription.setText(recipe.getDescription());
+        expandCarbos.setText(recipe.getCarbos());
+        expandCalories.setText(recipe.getCalories());
+        expandFats.setText(recipe.getFats());
+        expandCarbos.setText(recipe.getCarbos());
+        expandProtein.setText(recipe.getProteins());
+
+        final AlertDialog finalDialog = dialog;
+        expandBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finalDialog.dismiss();
+            }
+        });
+        // Create the AlertDialog object and return it
+
+        dialog.show();
+    }
 }
 
 

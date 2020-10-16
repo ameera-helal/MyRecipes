@@ -1,4 +1,4 @@
-package com.example.myrecipes;
+package com.example.myrecipes.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +15,12 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myrecipes.Network.ApiRequest;
+import com.example.myrecipes.R;
 import com.example.myrecipes.adapter.RecyclerViewAdapter;
 import com.example.myrecipes.model.Recipe;
 import com.example.myrecipes.util.AppUtil;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;

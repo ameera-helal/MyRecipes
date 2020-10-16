@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity  {
         isSortByFats=findViewById(R.id.main_activity_sortByFats);
 
 
+        //instantiate the http request
         ApiRequest apiRequest = AppUtil.getAPIRequest();
 
 
@@ -57,11 +58,11 @@ public class MainActivity extends AppCompatActivity  {
         //Log the URL called*/
         Log.d("URL Called", call.request().url() + "");
 
+      //**Retrofit call and fetching data
        call.enqueue(new Callback<List<Recipe>>() {
            @Override
            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                List<Recipe> recipesList = checkSorting(isSortByFats,isSortByCalory, response.body() );
-
                recyclerViewConfig(MainActivity.this,recipesList);
                searchBarConfig();
                for (int index =0 ; index< recipesList.size();index++)
@@ -77,9 +78,10 @@ public class MainActivity extends AppCompatActivity  {
        });
     }
 
-
+//** configure and instantiate recycler view
     public void recyclerViewConfig(Context context, List<Recipe> list)
     {
+        //** sorting
         if (isSortByCalory.isChecked())
             Collections.sort(list,Recipe.ByCalories);
         else if (isSortByFats.isChecked())
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
     }
-
+//** instantiate and configure the search view
     public void searchBarConfig()
     {
         searchView.setActivated(true);
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
+    //** check the check boxes situation to sort the list
     public List<Recipe> checkSorting(final CheckBox isSortByFats, final CheckBox isSortByCalory, final List<Recipe> list)
     {
         SharedPreferences shared = getSharedPreferences(AppUtil.APP_INFO,MODE_PRIVATE);

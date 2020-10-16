@@ -35,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.recipesFiltered = recipeList;
     }
 
+    //** extract the views from the xml file
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,6 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new ViewHolder(view);
     }
 
+    //** binding data with views
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipesFiltered.get(position);
@@ -53,6 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+    //** get the number of the recycler elements
     @Override
     public int getItemCount() {
         return recipesFiltered.size();
@@ -60,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
+    //**extract child views from the recycler view to setup the viewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView recipeName;
         public TextView recipeCalories;
@@ -73,7 +77,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             recipeCalories = itemView.findViewById(R.id.recycler_view_recipeCalories);
             recipeFats = itemView.findViewById(R.id.recycler_view_recipeFats);
             recipeThumb = itemView.findViewById(R.id.recycler_view_recipeThumb);
-
+//** open the popup dialog when clicked on the recycler view
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +88,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-
+//** apply filter while searching in the Search View bar
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -128,6 +132,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         };
     }
 
+
+    //** create a pop up dialog to view the Recipe details
 
     public void createExpandedPopup(int position) {
 

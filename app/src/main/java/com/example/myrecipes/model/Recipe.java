@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 
 public class Recipe {
-
+//** Retrofit annotations to achieve successful serialization
     @SerializedName("calories")
     @Expose
     private String calories;
@@ -44,7 +44,7 @@ public class Recipe {
     @Expose
     private String time;
 
-
+//**constructors
     public Recipe(String calories, String carbos, String description, int difficulty, String fats, String headline, String id, String image, String name, String proteins, String thumb, String time) {
         this.calories = calories;
         this.carbos = carbos;
@@ -63,9 +63,12 @@ public class Recipe {
     public Recipe() {
     }
 
+    //** getters and setters//
     public String getCalories() {
         return calories;
     }
+
+    //** to be used in sorting
     public int getIntCalories(){
         if(!calories.isEmpty())
            return Integer.parseInt(calories.replace("kcal"," ").trim());
@@ -102,6 +105,8 @@ public class Recipe {
     public String getFats() {
         return fats;
     }
+
+    //to be used in sorting
     public int getIntFats(){
         if(!fats.isEmpty())
             return Integer.parseInt(fats.replace("g"," ").trim());
@@ -168,7 +173,7 @@ public class Recipe {
     public void setTime(String time) {
         this.time = time;
     }
-
+//** sorting comparator methods
     public static Comparator<Recipe> ByCalories = new Comparator<Recipe>() {
         @Override
         public int compare(Recipe o1, Recipe o2) {

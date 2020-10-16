@@ -20,6 +20,8 @@ import com.example.myrecipes.adapter.RecyclerViewAdapter;
 import com.example.myrecipes.model.Recipe;
 import com.example.myrecipes.util.AppUtil;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        checkSorting(isSortByFats,isSortByCalory);
+
         apiRequest= AppUtil.getAPIRequest();
 
 
@@ -63,16 +65,17 @@ public class MainActivity extends AppCompatActivity  {
        call.enqueue(new Callback<List<Recipe>>() {
            @Override
            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-              List<Recipe> recipesList = response.body();
-              recyclerViewConfig(MainActivity.this,recipesList);
-              searchBarConfig();
+               List<Recipe> recipesList = checkSorting(isSortByFats,isSortByCalory, response.body() );
+
+               recyclerViewConfig(MainActivity.this,recipesList);
+               searchBarConfig();
                for (int index =0 ; index< recipesList.size();index++)
-                   Log.d("FetchedRecipes", "onResponse: "+ recipesList.get(index));
+                   Log.d("FetchedRecipes", "onResponse: "+ recipesList.get(index).getIntCalories());
            }
 
            @Override
            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-               Toast.makeText(MainActivity.this, "Something went wrong...Error message: "
+               Toast.makeText(MainActivity.this, "Something went wrong...Check your internet Connectivity "
                        + t.getMessage(), Toast.LENGTH_SHORT).show();
 
            }
@@ -82,13 +85,17 @@ public class MainActivity extends AppCompatActivity  {
 
     public void recyclerViewConfig(Context context, List<Recipe> list)
     {
+        if (isSortByCalory.isChecked())
+            Collections.sort(list,Recipe.ByCalories);
+        else if (isSortByFats.isChecked())
+            Collections.sort(list,Recipe.ByFats);
         recyclerViewAdapter = new RecyclerViewAdapter(context, list);
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerViewAdapter.notifyDataSetChanged();
+
 
     }
 
@@ -116,7 +123,7 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-    public String checkSorting(final CheckBox isSortByFats, final CheckBox isSortByCalory)
+    public List<Recipe> checkSorting(final CheckBox isSortByFats, final CheckBox isSortByCalory, final List<Recipe> list)
     {
         SharedPreferences shared = getSharedPreferences(AppUtil.APP_INFO,MODE_PRIVATE);
         String sortType= shared.getString(AppUtil.SORT_TYPE,"").trim();
@@ -138,8 +145,11 @@ public class MainActivity extends AppCompatActivity  {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 
+
                 if(isSortByFats.isChecked() && isSortByFats.isPressed())
                 {
+                    Collections.sort(list,Recipe.ByFats);
+                    recyclerViewAdapter.notifyDataSetChanged();
                     isSortByCalory.setChecked(false);
                     SharedPreferences sharedPreferences = getSharedPreferences(AppUtil.APP_INFO,MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -172,6 +182,8 @@ public class MainActivity extends AppCompatActivity  {
 
                 if(isSortByCalory.isChecked() && isSortByCalory.isPressed())
                 {
+                    Collections.sort(list,Recipe.ByCalories);
+                    recyclerViewAdapter.notifyDataSetChanged();
                     isSortByFats.setChecked(false);
                     SharedPreferences sharedPreferences = getSharedPreferences(AppUtil.APP_INFO,MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -197,7 +209,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         Log.d("History", "checkSorting: "+sortType);
-        return sortType;
+        return list;
     }
 }
 

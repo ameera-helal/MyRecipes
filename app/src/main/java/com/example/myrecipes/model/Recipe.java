@@ -2,6 +2,8 @@ package com.example.myrecipes.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Comparator;
+
 
 public class Recipe {
 
@@ -64,6 +66,10 @@ public class Recipe {
     public String getCalories() {
         return calories;
     }
+    public int getIntCalories(){
+        if(!calories.isEmpty())
+           return Integer.parseInt(calories.replace("kcal"," ").trim());
+        else return 0;}
 
     public void setCalories(String calories) {
         this.calories = calories;
@@ -95,6 +101,12 @@ public class Recipe {
 
     public String getFats() {
         return fats;
+    }
+    public int getIntFats(){
+        if(!fats.isEmpty())
+            return Integer.parseInt(fats.replace("g"," ").trim());
+        else return 0;
+
     }
 
     public void setFats(String fats) {
@@ -156,6 +168,20 @@ public class Recipe {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public static Comparator<Recipe> ByCalories = new Comparator<Recipe>() {
+        @Override
+        public int compare(Recipe o1, Recipe o2) {
+            return  Integer.valueOf(o1.getIntCalories()).compareTo(Integer.valueOf(o2.getIntCalories()));
+        }
+    };
+
+    public static Comparator<Recipe> ByFats = new Comparator<Recipe>() {
+        @Override
+        public int compare(Recipe o1, Recipe o2) {
+            return  Integer.valueOf(o1.getIntFats()).compareTo(Integer.valueOf(o2.getIntFats()));
+        }
+    };
 
     @Override
     public String toString() {

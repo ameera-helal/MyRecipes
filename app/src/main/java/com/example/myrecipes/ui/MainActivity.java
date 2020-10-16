@@ -15,6 +15,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myrecipes.Network.ApiRequest;
+import com.example.myrecipes.Network.NoConnectivityException;
+import com.example.myrecipes.Network.RetrofitClient;
 import com.example.myrecipes.R;
 import com.example.myrecipes.adapter.RecyclerViewAdapter;
 import com.example.myrecipes.model.Recipe;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         //instantiate the http request
-        ApiRequest apiRequest = AppUtil.getAPIRequest();
+        ApiRequest apiRequest = RetrofitClient.getClient(AppUtil.BASE_URL,MainActivity.this).create(ApiRequest.class);;
 
 
 
@@ -71,8 +73,12 @@ public class MainActivity extends AppCompatActivity  {
 
            @Override
            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-               Toast.makeText(MainActivity.this, "Something went wrong...Check your internet Connectivity "
-                       + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+               if(t instanceof NoConnectivityException) {
+                   Toast.makeText(MainActivity.this, "Something went wrong...Check your internet Connectivity "
+                                          + t.getMessage(), Toast.LENGTH_SHORT).show();
+               }
+
 
            }
        });
@@ -210,7 +216,15 @@ public class MainActivity extends AppCompatActivity  {
         return list;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        // close search view on back button pressed
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+    }
 }
 
 

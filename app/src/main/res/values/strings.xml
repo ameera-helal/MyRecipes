@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">MyRecipes</string>
+    <string name="sort_recipes_by">Sort Recipes By?</string>
+    <string name="calories">calories</string>
+    <string name="fats">Fats</string>
+    <string name="recipe_thumb">recipe thumb</string>
+    <string name="recipename">RecipeName</string>
+    <string name="calories_head">Calories:</string>
+    <string name="fats_head">Fats:</string>
+    <string name="recipecalories">RecipeCalories:</string>
+    <string name="recipefats">RecipeFats:</string>
+    <string name="enter_item">Enter Item</string>
+    <string name="headline">Headline</string>
+    <string name="description">description</string>
+    <string name="nutrition_facts">~ Nutrition Facts ~</string>
+    <string name="carbos">Carbos:</string>
+    <string name="protein">Protein:</string>
 </resources>

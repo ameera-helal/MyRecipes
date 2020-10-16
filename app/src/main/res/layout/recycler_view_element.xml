@@ -25,22 +25,23 @@
                 android:layout_height="88dp"
                 android:scaleType="fitCenter"
                 android:layout_alignParentStart="true"
-                android:src="@android:drawable/ic_menu_report_image"/>
+                android:src="@android:drawable/ic_menu_report_image"
+                android:contentDescription="@string/recipe_thumb"/>
 
             <TextView
                 android:id="@+id/recycler_view_recipeName"
                 style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/recycler_view_recipeThumb"
-                android:text="RecipeName" />
+                android:layout_toEndOf="@id/recycler_view_recipeThumb"
+                android:text="@string/recipename" />
 
             <TextView
                 android:id="@+id/Calories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calories:"
-                android:layout_toRightOf="@id/recycler_view_recipeThumb"
+                android:text="@string/calories_head"
+                android:layout_toEndOf="@id/recycler_view_recipeThumb"
                 android:layout_below="@id/recycler_view_recipeName"
                 style="@style/sub_title"/>
 
@@ -48,8 +49,8 @@
                 android:id="@+id/Fats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fats:"
-                android:layout_toRightOf="@id/recycler_view_recipeThumb"
+                android:text="@string/fats_head"
+                android:layout_toEndOf="@id/recycler_view_recipeThumb"
                 android:layout_below="@id/Calories"
                 style="@style/sub_title"/>
 
@@ -57,8 +58,8 @@
                 android:id="@+id/recycler_view_recipeCalories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RecipeCalories:"
-                android:layout_toRightOf="@id/Calories"
+                android:text="@string/recipecalories"
+                android:layout_toEndOf="@id/Calories"
                 android:layout_alignBaseline="@id/Calories"
                 android:layout_below="@id/recycler_view_recipeName"
                 style="@style/body"/>
@@ -67,8 +68,8 @@
                 android:id="@+id/recycler_view_recipeFats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RecipeFats:"
-                android:layout_toRightOf="@id/Fats"
+                android:text="@string/recipefats"
+                android:layout_toEndOf="@id/Fats"
                 android:layout_below="@id/Calories"
                 android:layout_alignBaseline="@id/Fats"
                 style="@style/body"/>

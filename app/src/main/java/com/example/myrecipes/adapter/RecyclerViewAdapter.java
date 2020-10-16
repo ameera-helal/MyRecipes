@@ -1,9 +1,7 @@
 package com.example.myrecipes.adapter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrecipes.R;
 import com.example.myrecipes.model.Recipe;
-import com.example.myrecipes.ui.Recipe_Details;
-import com.example.myrecipes.util.AppUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -81,10 +77,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(context, Recipe_Details.class);
-                    intent.putExtra(AppUtil.CURRENT_RECIPE,getAdapterPosition());
-                    context.startActivity(intent);*/
-
                     createExpandedPopup(getAdapterPosition());
                 }
             });

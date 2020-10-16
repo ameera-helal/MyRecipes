@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:background="@android:color/darker_gray"/>
+            android:background="#DAD2D2"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -33,7 +32,7 @@
                     android:id="@+id/sort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sort Recipes By?"
+                    android:text="@string/sort_recipes_by"
                     android:layout_centerHorizontal="true"
                     style="@style/sub_title"/>
 
@@ -42,7 +41,7 @@
                     android:id="@+id/main_activity_sortByCalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="calories"
+                    android:text="@string/calories"
                     style="@style/body"/>
 
                 <CheckBox
@@ -50,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="Fats"
+                    android:text="@string/fats"
                     style="@style/body"/>
 
             </RelativeLayout>

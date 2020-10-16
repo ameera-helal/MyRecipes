@@ -29,10 +29,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private ApiRequest apiRequest;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private LinearLayoutManager linearLayoutManager;
     private SearchView searchView;
     private CheckBox isSortByFats, isSortByCalory;
 
@@ -49,9 +47,7 @@ public class MainActivity extends AppCompatActivity  {
         isSortByFats=findViewById(R.id.main_activity_sortByFats);
 
 
-
-
-        apiRequest= AppUtil.getAPIRequest();
+        ApiRequest apiRequest = AppUtil.getAPIRequest();
 
 
 
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity  {
             Collections.sort(list,Recipe.ByFats);
         recyclerViewAdapter = new RecyclerViewAdapter(context, list);
         recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(context);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -210,6 +206,8 @@ public class MainActivity extends AppCompatActivity  {
         Log.d("History", "checkSorting: "+sortType);
         return list;
     }
+
+
 }
 
 

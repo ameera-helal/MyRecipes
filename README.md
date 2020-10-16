@@ -8,8 +8,8 @@ this app Fetch data from JSON API using Retrofit2 and display it in a RecyclerVi
 3) you can search by Recipe name in search bar
 # Permissions
 
-1)internet access
-2)check network state
+1) internet access
+2) check network state
 
 # Libraries
 1) Retrofit2 >> to Fetch data from Api

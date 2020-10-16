@@ -44,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Recipe recipe = recipeList.get(position);
+        Recipe recipe = recipesFiltered.get(position);
         holder.recipeName.setText(recipe.getName());
         holder.recipeCalories.setText(recipe.getCalories());
         holder.recipeFats.setText(recipe.getFats());
@@ -55,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return recipeList.size();
+        return recipesFiltered.size();
     }
 
 
@@ -97,8 +97,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 List<Recipe> filtered = new ArrayList<>();
 
                 if (query.isEmpty()) {
-                    filtered.addAll(recipeList);
-                    Log.d("FILTER", "emptyy "+recipeList);
+                    filtered=recipeList;
+                    Log.d("FILTER", "emptyy "+filtered);
 
                 } else {
                     for (Recipe recipe : recipeList) {
@@ -121,8 +121,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             protected void publishResults(CharSequence charSequence, FilterResults results) {
 
 
-                recipesFiltered.clear();
-                recipesFiltered.addAll((List) results.values);
+                //recipesFiltered.clear();
+                recipesFiltered=((List) results.values);
                 notifyDataSetChanged();
             }
         };
@@ -131,7 +131,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public void createExpandedPopup(int position) {
 
-        final Recipe recipe = this.recipeList.get(position);
+        final Recipe recipe = this.recipesFiltered.get(position);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.popup_dialog_expand,null);
         AlertDialog dialog;
